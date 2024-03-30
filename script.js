@@ -7,7 +7,6 @@ const operationSelect = document.getElementById('operation');
 
 let correctAnswer;
 let gameStarted = false;
-let firstAttempt = true; 
 
 const generateCalculation = () => {
     const operation = operationSelect.value;
@@ -17,13 +16,13 @@ const generateCalculation = () => {
     const num2 = getRandomNumber(maxDigits);
 
     correctAnswer = calculate(operation, num1, num2);
+    console.log(correctAnswer)
 
     const calculation = num1 + " " + operationSymbol(operation) + " " + num2 + " = ?";
     calculationDiv.innerText = calculation;
     resultDiv.innerText = '';
     answerInput.value = '';
     answerInput.focus()
-
     gameStarted = true;
     
 };
@@ -31,10 +30,8 @@ const generateCalculation = () => {
 const checkAnswer = () => {
     const userAnswer = parseFloat(answerInput.value);
     if (!isNaN(userAnswer)) {
-        if (userAnswer === correctAnswer && firstAttempt) {
-            resultDiv.innerText = "Você acertou!";
+        if (userAnswer === correctAnswer) {
             gameStarted = false;
-            firstAttempt = false; 
             answerInput.focus()
             startGame()
         } else {
