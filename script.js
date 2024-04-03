@@ -11,21 +11,15 @@ let firstAttempt = true;
 
 const generateCalculation = () => {
   const operation = operationSelect.value;
-
-    if (operation === 'divide' || operation === 'multiply') {
-        alert('ADICIONAR UM VALOR AO NUMERO SECUNDARIO')
-    }
-
   const maxDigits = parseInt(document.getElementById("maxDigits").value);
 
-  console.log(maxDigits);
   if (maxDigits > 5) {
     resultDiv.innerText = "Os máximo de digitos deve ser menor que 6";
     stop();
   } else {
     resultDiv.innerText = "";
     const num1 = getRandomNumber(maxDigits);
-    const num2 = getRandomNumber(maxDigits);
+    if
 
     correctAnswer = calculate(operation, num1, num2);
 
