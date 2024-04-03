@@ -30,7 +30,7 @@ const generateCalculation = () => {
     correctAnswer = calculate(operation, num1, num2);
 
     const calculation =
-      num1 + " " + operationSymbol(operation) + " " + num2 + " = ?";
+      num1 + " " + operationSymbol(operation) + " " + num2;
     calculationDiv.innerText = calculation;
     answerInput.value = "";
     answerInput.focus();

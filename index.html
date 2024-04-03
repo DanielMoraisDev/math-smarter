@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerador de Cálculos</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="calculator">
-        <h2>Gerador de Cálculos</h2>
-        <label for="operation">Escolha a Operação:</label>
-        <select id="operation">
+      <h2>Gerador de Cálculos</h2>
+      <div class="generating-container">
+        <div class="select-type-container">
+          <label for="operation">Operação:</label>
+          <select id="operation">
             <option value="add">Adição (+)</option>
             <option value="subtract">Subtração (-)</option>
             <option value="multiply">Multiplicação (x)</option>
-            <option value="divide">Divisão (/)</option>
-        </select>
-        <br>
-        <label for="maxDigits">Número Máximo de Dígitos:</label>
-        <input type="number" id="maxDigits" min="1" value="2">
-        <br>
-        <div id="calculation"></div>
-        <input type="number" id="answer" placeholder="Sua Resposta">
-        <button id="btnGenerator">Gerar Cálculo</button>
-        <button id="btnCheck">Verificar Resposta</button>
-        <div id="result" class="center"></div>
+            <option value="divide">Divisão (/)</option>            
+          </select>
+
+        </div>
+        <div class="number-main">
+          <label for="maxDigits">Máximo de Dígitos:</label>
+          <div class="number-button-input">
+            <input type="number" id="maxDigits" min="1" value="2" />
+          <button id="btnGenerator">
+            <i class="fa-solid fa-dice-five"></i>
+          </button>  
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div id="calculation"></div>
+      <div id="result" class="center"></div>
+      <input type="number" id="answer" placeholder="Sua Resposta" />
+      <button id="btnCheck">Verificar Resposta</button>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
