@@ -68,7 +68,6 @@ const generateCalculation = () => {
     wrongAnswer2 = correctAnswer + 4
     wrongAnswer3 = correctAnswer + 6
 
-    console.log(correctAnswer)
     generateAnswerLocation(correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3);
 
     const calculation = num1 + " " + operationSymbol(operation) + " " + num2;
