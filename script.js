@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => alert('Ainda estamos em trabalho na operação de divisão (/), porém você pode aproveita-la'))
+
 const btnGenerator = document.getElementById("btnGenerator");
 const btnCheck = document.getElementById("btnCheck");
 const calculationDiv = document.getElementById("calculation");
@@ -7,21 +9,34 @@ const operationSelect = document.getElementById("operation");
 
 let correctAnswer;
 let gameStarted = false;
-let firstAttempt = true;
 
 const generateCalculation = () => {
   const operation = operationSelect.value;
-  const maxDigits = parseInt(document.getElementById("maxDigits").value);
+  const maxDigits = document.getElementById('maxDigits');
+  const secondDigit = document.getElementById('secondDigit');
+  const maxDigitsValue = parseInt(document.getElementById("maxDigits").value);
+  const secondDigitValue = parseInt(document.getElementById('secondDigit').value);
 
-  if (maxDigits > 5) {
-    resultDiv.innerText = "Os máximo de digitos deve ser menor que 6";
+  if (maxDigitsValue > 5) {
+    resultDiv.innerText = "Os máximo de dígitos deve ser menor que 6";
     stop();
   } else {
     resultDiv.innerText = "";
-    const num1 = getRandomNumber(maxDigits);
-    if
+    let num1 = getRandomNumber(maxDigitsValue);
+    let num2;
 
-    correctAnswer = calculate(operation, num1, num2);
+    if (operation === 'divide' || operation === 'multiply') {
+      maxDigits.style.width = '40%'
+      secondDigit.style.display = 'inherit'
+      num2 = getRandomNumber(secondDigitValue)
+    } else {
+      maxDigits.style.width = '100%'
+      secondDigit.style.display = 'none'
+      num2 = getRandomNumber(maxDigitsValue)
+    }
+
+    correctAnswer = calculate(operation, num1, num2)
+    console.log(correctAnswer)
 
     const calculation =
       num1 + " " + operationSymbol(operation) + " " + num2;
@@ -36,10 +51,9 @@ const generateCalculation = () => {
 const checkAnswer = () => {
   const userAnswer = parseFloat(answerInput.value);
   if (!isNaN(userAnswer)) {
-    if (userAnswer === correctAnswer && firstAttempt) {
+    if (userAnswer === correctAnswer) {
       resultDiv.innerText = "Você acertou!";
       gameStarted = false;
-      firstAttempt = false;
       answerInput.focus();
       startGame();
     } else {
@@ -52,9 +66,9 @@ const checkAnswer = () => {
   }
 };
 
-const getRandomNumber = (maxDigits) => {
-  const min = Math.pow(10, maxDigits - 1);
-  const max = Math.pow(10, maxDigits) - 1;
+const getRandomNumber = (maxDigitsValue) => {
+  const min = Math.pow(10, maxDigitsValue - 1);
+  const max = Math.pow(10, maxDigitsValue) - 1;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
@@ -68,7 +82,7 @@ const calculate = (operation, num1, num2) => {
       return num1 * num2;
     case "divide":
       if (num2 !== 0) {
-        return num1 / num2;
+        return num1 / num2
       } else {
         return "Erro: divisão por zero!";
       }

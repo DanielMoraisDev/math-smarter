@@ -79,6 +79,9 @@ button:hover {
     background-color: #418043;
 }
 
+#operation {
+    width: 100%;
+}
 
 #result {
     text-align: center;
@@ -87,20 +90,30 @@ button:hover {
 
 .generating-container {
     display: flex;
+    gap: 10px;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.number-button-input {
+.digits-input {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-.number-button-input button {
+.digits-input button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 48px;
+}
+
+#maxDigits {
+    width: 100%;
+}
+
+#secondDigit {
+    display: none;
+    width: 40%;
 }

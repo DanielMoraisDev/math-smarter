@@ -20,27 +20,22 @@
         <div class="select-type-container">
           <label for="operation">Operação:</label>
           <select id="operation">
-            <option value="add">Adição (+)</option>
-            <option value="subtract">Subtração (-)</option>
-            <option value="multiply">Multiplicação (x)</option>
-            <option value="divide">Divisão (/)</option>            
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">x</option>
+            <option value="divide">/</option>            
           </select>
 
         </div>
         <div class="number-container">
           <div class="number-main">
             <label for="maxDigits">Máximo de Dígitos:</label>
-            <div class="number-button-input">
+            <div class="digits-input">
               <input type="number" id="maxDigits" min="1" value="2" />
-            </div>
-          </div>
-          <div class="number-main">
-            <label for="maxDigits">Máximo de Dígitos:</label>
-            <div class="number-button-input">
-              <input type="number" id="maxDigits" min="1" value="2" />
-            <button id="btnGenerator">
-              <i class="fa-solid fa-dice-five"></i>
-            </button>  
+              <input type="number" id="secondDigit" min="1" value="1" />
+              <button id="btnGenerator">
+                <i class="fa-solid fa-dice-five"></i>
+              </button>  
             </div>
           </div>
         </div>
