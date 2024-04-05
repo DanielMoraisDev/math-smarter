@@ -10,7 +10,7 @@ let answerInput;
 let correctAnswer;
 let gameStarted = false;
 
-const generateAnswerLocation = (answer, wrong1, wrong2, wrong3) => {
+const generateAnswerLocation = (answer, wrong1, wrong2, wrong3, type) => {
   const aResult = document.getElementById("aResult");
   const bResult = document.getElementById("bResult");
   const cResult = document.getElementById("cResult");
@@ -23,13 +23,22 @@ const generateAnswerLocation = (answer, wrong1, wrong2, wrong3) => {
   const selectedInputId = answerInputs[randomIndex] + "Result";
   answerInput = document.getElementById(selectedInputId);
 
-  answerInput.innerHTML = answer;
+  if (type === 'divide') {
+    answerInput.innerHTML = (answer).toFixed(3);    
+  } else {
+    answerInput.innerHTML = answer
+  }
 
   for (let i = 1; i <= 3; i++) {
     const wrongIndex = (randomIndex + i) % answerInputs.length;
     const wrongAnswerInputId = answerInputs[wrongIndex] + "Result";
     const wrongAnswerInput = document.getElementById(wrongAnswerInputId);
-    wrongAnswerInput.innerHTML = wrongAnswers[i];
+    if (type === 'divide') {
+      wrongAnswerInput.innerHTML = (wrongAnswers[i]).toFixed(3);
+    } else {
+      wrongAnswerInput.innerHTML = wrongAnswers[i]
+    }
+
     wrongAnswerInput.addEventListener("click", checkAnswer);
 }
 
@@ -68,7 +77,11 @@ const generateCalculation = () => {
     wrongAnswer2 = correctAnswer + 4
     wrongAnswer3 = correctAnswer + 6
 
-    generateAnswerLocation(correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3);
+    if (operation === "divide") {
+      generateAnswerLocation(correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3, 'divide');
+    } else {
+      generateAnswerLocation(correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3);
+    }
 
     const calculation = num1 + " " + operationSymbol(operation) + " " + num2;
     calculationDiv.innerText = calculation;
