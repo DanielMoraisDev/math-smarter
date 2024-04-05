@@ -6,29 +6,35 @@ const calculationDiv = document.getElementById("calculation");
 const resultDiv = document.getElementById("result");
 const operationSelect = document.getElementById("operation");
 
+let answerInput;
 let correctAnswer;
 let gameStarted = false;
 
-const generateAnswerLocation = () => {
+const generateAnswerLocation = (answer, wrong1, wrong2, wrong3) => {
   const aResult = document.getElementById("aResult");
   const bResult = document.getElementById("bResult");
   const cResult = document.getElementById("cResult");
   const dResult = document.getElementById("dResult");
 
+  const wrongAnswers = ['', wrong1, wrong2, wrong3];
   const answerInputs = ["a", "b", "c", "d"];
   const randomIndex = Math.floor(Math.random() * answerInputs.length);
 
-  const selectedInputId = answerInputs[randomIndex] + 'Result';
-  const selectedInput = document.getElementById(selectedInputId);
+  const selectedInputId = answerInputs[randomIndex] + "Result";
+  answerInput = document.getElementById(selectedInputId);
 
-  console.log(selectedInputId)
+  answerInput.innerHTML = answer;
 
-  selectedInput.addEventListener('click', () => {
-    
-  });
+  for (let i = 1; i <= 3; i++) {
+    const wrongIndex = (randomIndex + i) % answerInputs.length;
+    const wrongAnswerInputId = answerInputs[wrongIndex] + "Result";
+    const wrongAnswerInput = document.getElementById(wrongAnswerInputId);
+    wrongAnswerInput.innerHTML = wrongAnswers[i];
+    wrongAnswerInput.addEventListener("click", checkAnswer);
+}
+
+  answerInput.addEventListener("click", checkAnswer);
 };
-
-generateAnswerLocation()
 
 const generateCalculation = () => {
   const operation = operationSelect.value;
@@ -58,7 +64,12 @@ const generateCalculation = () => {
     }
 
     correctAnswer = calculate(operation, num1, num2);
-    console.log(correctAnswer);
+    wrongAnswer1 = correctAnswer + 2
+    wrongAnswer2 = correctAnswer + 4
+    wrongAnswer3 = correctAnswer + 6
+
+    console.log(correctAnswer)
+    generateAnswerLocation(correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3);
 
     const calculation = num1 + " " + operationSymbol(operation) + " " + num2;
     calculationDiv.innerText = calculation;
@@ -67,23 +78,24 @@ const generateCalculation = () => {
   }
 };
 
-const checkAnswer = () => {
-  // const userAnswer = generateAnswerLocation();
-  // if (!isNaN(userAnswer)) {
-  //   if (userAnswer === correctAnswer) {
-  //     resultDiv.innerText = "Você acertou!";
-  //     gameStarted = false;
-  //     answerInput.focus();
-  //     startGame();
-  //   } else {
-  //     resultDiv.innerText = "Tente novamente!";
-  //     answerInput.focus();
-  //   }
-  // } else {
-  //   resultDiv.innerText = "Por favor, insira um número válido.";
-  //   answerInput.focus();
-  // }
+const checkAnswer = (event) => {
+  const clickedButton = event.target; 
+  const answerText = clickedButton.innerHTML; 
+
+  if (Number(answerText) === correctAnswer) {
+    resultDiv.innerText = "Você acertou!";
+    gameStarted = false;
+    answerInput.focus();
+    startGame();
+  } else {
+    resultDiv.innerText = "Tente novamente!";
+    answerInput.focus();
+  }
 };
+const answerButtons = document.querySelectorAll('.answersButtons');
+answerButtons.forEach(button => {
+  button.addEventListener('click', checkAnswer);
+});
 
 const getRandomNumber = (maxDigitsValue) => {
   const min = Math.pow(10, maxDigitsValue - 1);
@@ -135,11 +147,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 btnGenerator.addEventListener("click", generateCalculation);
 
-btnCheck.addEventListener("click", checkAnswer);
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    checkAnswer();
-  }
-});
 operationSelect.addEventListener("change", startGame);
