@@ -117,3 +117,9 @@ button:hover {
     display: none;
     width: 40%;
 }
+
+.resultContainer {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto;
+}

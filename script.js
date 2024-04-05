@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => alert('Ainda estamos em trabalho na operação de divisão (/), porém você pode aproveita-la'))
+document.addEventListener('DOMContentLoaded', () => alert('Ainda estamos em trabalho na operação de divisão (/), porém você pode aproveita-la\n\nTambém estou modificando a maneira de respostas'))
 
 const btnGenerator = document.getElementById("btnGenerator");
 const btnCheck = document.getElementById("btnCheck");
