@@ -113,7 +113,7 @@ const getRandomNumber = (maxDigitsValue) => {
   const min = Math.pow(10, maxDigitsValue - 1);
   const max = Math.pow(10, maxDigitsValue) - 1;
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+};  
 
 const calculate = (operation, num1, num2) => {
   switch (operation) {
